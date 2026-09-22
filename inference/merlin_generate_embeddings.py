@@ -10,6 +10,7 @@ Before running:
     the full path to each subject's CT scan
 """
 
+import json
 import os
 
 import pandas as pd
@@ -19,7 +20,7 @@ from merlin.data import DataLoader
 
 # ---- 1. Point this at your input CSV -----------------------------------
 INPUT_CSV = "/home/km2347/Merlin/test_data/test_inputs.csv"
-SID_COL = "SID"    
+SID_COL = "SID"
 PATH_COL = "Path"  # column name holding full path to each CT scan (.nii.gz)
 OUT_DIR = "/home/km2347/Merlin/results"  # where cache + embeddings get written
 
@@ -93,12 +94,13 @@ np.savez(
 )
 print(f"Saved embeddings + subject IDs to {out_path}")
 
-# Also save a CSV mapping SID -> embedding for easy downstream use
-embeddings_df = pd.DataFrame(
-    all_embeddings.numpy(),
-    columns=[f"emb_{i}" for i in range(all_embeddings.shape[1])],
-)
-embeddings_df.insert(0, SID_COL, subject_ids)
+# Also save a CSV mapping SID -> Embedding (JSON-encoded list), matching
+# the format used by grab_previous_embeddings.py's output CSV
+embeddings_np = all_embeddings.numpy()
+embeddings_df = pd.DataFrame({
+    SID_COL: subject_ids,
+    "Embedding": [json.dumps(row.tolist()) for row in embeddings_np],
+})
 csv_out_path = os.path.join(OUT_DIR, "merlin_embeddings.csv")
 embeddings_df.to_csv(csv_out_path, index=False)
 print(f"Saved embeddings CSV to {csv_out_path}")
