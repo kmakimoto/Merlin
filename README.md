@@ -1,3 +1,6 @@
+# Copied Repo
+Added inference/merlin_generate_embeddings.py
+
 # Merlin: A Computed Tomography Vision–Language Foundation Model and Dataset
 
 [![Nature Paper](https://img.shields.io/badge/Nature-Paper-blue?style=for-the-badge)](https://doi.org/10.1038/s41586-026-10181-8)    [![arXiv](https://img.shields.io/badge/arXiv-2406.06512-b31b1b.svg?style=for-the-badge)](https://arxiv.org/abs/2406.06512)    [![Hugging Face](https://huggingface.co/datasets/huggingface/badges/resolve/main/model-on-hf-md.svg)](https://huggingface.co/stanfordmimi/Merlin)    [![Merlin Dataset](https://img.shields.io/badge/Merlin%20Dataset-darkgreen?style=for-the-badge)](https://stanfordaimi.azurewebsites.net/datasets/60b9c7ff-877b-48ce-96c3-0194c8205c40)    [![Watch the Talk on YouTube](https://img.shields.io/badge/YouTube-Talk-red?style=for-the-badge&logo=youtube)](https://youtu.be/XWmCkbpXOUw?si=6GggZgj9U4kbLAKx)
